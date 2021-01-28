@@ -32,7 +32,6 @@ FROM numbers
 ```
 ###Test Results:
 ```
-SELECT Results
 number1	number2
 94606	137
 ```

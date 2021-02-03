@@ -21,3 +21,10 @@ The query must rank each clan by their total_points, you must return each unqiue
 ## Note The data is loaded from the live leaderboard, this means values will change but also could cause the kata to time out retreiving the information.
 
 ---
+```
+SELECT COALESCE(NULLIF(clan, ''),'[no clan specified]') clan, count(name) as total_people, sum(points) as total_points,
+ROW_NUMBER() OVER (ORDER BY sum(points) DESC) rank
+FROM people
+GROUP BY clan
+ORDER BY total_points DESC
+```

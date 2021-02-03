@@ -28,3 +28,12 @@ FROM people
 GROUP BY clan
 ORDER BY total_points DESC
 ```
+
+### OR using RANK() function:
+```
+SELECT COALESCE(NULLIF(clan, ''),'[no clan specified]') clan, count(name) as total_people, sum(points) as total_points,
+RANK() OVER (ORDER BY sum(points) DESC) rank
+FROM people
+GROUP BY clan
+ORDER BY total_points DESC
+```
